@@ -1,0 +1,14 @@
+ERROR:2020-12-18 17:00:31,974:example_reporting_main.base_logger: abstract_builder.py:42: test exception
+Traceback (most recent call last):
+  File "/media/ubuntu/data/nicolinux/prog/use case docker/example_reporting_main/example_reporting_main/report/data/abstract_builder.py", line 33, in get_data
+    response = requests.get(self.url, timeout=30)
+  File "/home/ubuntu/anaconda3/lib/python3.8/unittest/mock.py", line 1081, in __call__
+    return self._mock_call(*args, **kwargs)
+  File "/home/ubuntu/anaconda3/lib/python3.8/unittest/mock.py", line 1085, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+  File "/home/ubuntu/anaconda3/lib/python3.8/unittest/mock.py", line 1146, in _execute_mock_call
+    result = effect(*args, **kwargs)
+  File "/media/ubuntu/data/nicolinux/prog/use case docker/example_reporting_main/tests/report/data/test_abstract_builder.py", line 35, in mocked_requests_get
+    raise ValueError("test exception")
+ValueError: test exception
+ERROR:2020-12-18 17:00:31,976:example_reporting_main.base_logger: abstract_builder.py:35: response status for urlKO 500
