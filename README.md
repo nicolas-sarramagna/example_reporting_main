@@ -1,4 +1,4 @@
-# example_reporting_main (in progress)
+# example_reporting_main 
 
 Local :
 1. start a local smtp server : docker run -p 1080:80 -p 1025:25 maildev/maildev
