@@ -1,0 +1,33 @@
+version: '2'
+
+services:
+  backend:
+    build: .
+    volumes:
+      - ./docker_config_dev/:/usr/src/app/example_reporting_main/config/
+    command: python example_reporting_main/main.py
+    networks: 
+      - mybackend
+    depends_on:
+      - server-web-services
+      - server-mail
+
+  server-web-services:
+    image: sarramagna/example_reporting_web_services
+    command: gunicorn example_reporting_web_services.app_ws:app --bind 0.0.0.0:50503 -w 1 -k uvicorn.workers.UvicornWorker
+    ports:
+      - "10503:50503"
+    networks: 
+      - mybackend
+
+  server-mail:
+    image : maildev/maildev
+    ports:
+      - "1025:25"
+      - "1080:80"
+    networks: 
+      - mybackend
+networks:
+  mybackend:
+    driver: "bridge"
+   
