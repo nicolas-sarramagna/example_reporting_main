@@ -5,6 +5,11 @@ services:
     image: sarramagna/example_reporting_main
     volumes:
       - ./docker_config_prod/:/usr/src/app/example_reporting_main/config/
+    environment:
+      - email_sender=sarramagna23@gmail.com
+      - email_receiver=nicolas_sarramagna@yahoo.fr
+      - secure_mode_login=sarramagna23@gmail.com
+      - secure_mode_pwd=Mars123$$
     command: python example_reporting_main/main.py
     networks: 
       - mybackend

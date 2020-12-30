@@ -47,6 +47,12 @@ if __name__ == '__main__':
     secure_mode_login = config.get("SMTPSection", "secure_mode_login")
     secure_mode_pwd = config.get("SMTPSection", "secure_mode_pwd")
 
+    # some arguments in env mode
+    sender_email = os.getenv("email_sender", sender_email)
+    receiver_email = os.getenv("email_receiver", receiver_email)
+    secure_mode_login = os.getenv("secure_mode_login", secure_mode_login)
+    secure_mode_pwd = os.getenv("secure_mode_pwd", secure_mode_pwd)
+
     email_builder = EmailBuilder(smtp_host, int(smtp_port), sender_email, receiver_email,
                                  is_secure_mode, secure_mode_login, secure_mode_pwd)
     data_img = [data['content'] for data in data_charts if 'error_msg' not in data]
