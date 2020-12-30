@@ -91,9 +91,6 @@ workflows:
     jobs:
       - send-report
 
-workflows:
-  version: 2
-
   build-master:
     jobs:
       - mybuild:
