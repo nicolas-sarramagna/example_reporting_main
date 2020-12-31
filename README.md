@@ -1,5 +1,7 @@
 # Example of usages of python consume API, html email with images and unittest
 
+![screeen_email](https://github.com/nicolas-sarramagna/example_reporting_main/blob/main/images/screen_email.png)
+
 ## Daily email report of the market Bitcoin - USD
 
 ## Local :
