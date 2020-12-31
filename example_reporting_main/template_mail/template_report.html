@@ -14,45 +14,50 @@
 
   </head>
   <body>
-  <h1>Charts</h1>
-    {% for chart in data.data_charts %}
-      {% if chart.error_msg is defined %}
-        <p>Error : {{chart.error_msg|e}}</p>
+  <table>
 
-      {% else %}
-          <img src="cid:{{loop.index0}}">
-      {% endif %}
+  <td width="50%">
+	  <h1>Indicators</h1>
 
-    {% endfor %}
+	  {% for indicator in data.data_indicators %}
+	    <h2>From {{indicator.from_site|e}}</h2>
+	       <p>info url : <a href="{{indicator.from_url|e}}">{{indicator.from_url|e}}</a></p>
+	      {% if indicator.error_msg is defined %}
+		<p>Error : {{indicator.error_msg|e}}</p>
 
-  <h1>Indicators</h1>
+	      {% else %}
 
-  {% for indicator in data.data_indicators %}
-    <h2>From {{indicator.from_site|e}}</h2>
-       <p>info url : <a href="{{indicator.from_url|e}}">{{indicator.from_url|e}}</a></p>
-      {% if indicator.error_msg is defined %}
-        <p>Error : {{indicator.error_msg|e}}</p>
+		  <p>Summary : <span class="summary">{{indicator.summary|e}}</span></p>
+		        <p>Indicators :
+		        </p>
+		        {% for detail in indicator.details %}
+		            <div class="indent">- {{detail.trend_name|e}} : {{detail.trend_value|e}}
+		                <div class="indent">
+		                    Buy: {{detail.trend_buy|e}}
+		                &nbsp;
+		                    Neutral: {{detail.trend_neutral|e}}
+		                &nbsp;
+		                    Sell: {{detail.trend_sell|e}}
+		                </div>
+		            </div>
+		        {% endfor %}
+	      {% endif %}
 
-      {% else %}
+	  {% endfor %}
+  </td>
+  <td>
+	  <h1>Charts</h1>
+	    {% for chart in data.data_charts %}
+	      {% if chart.error_msg is defined %}
+		<p>Error : {{chart.error_msg|e}}</p>
 
-          <p>Summary : <span class="summary">{{indicator.summary|e}}</span></p>
-                <p>Indicators :
-                </p>
-                {% for detail in indicator.details %}
-                    <div class="indent">- {{detail.trend_name|e}} : {{detail.trend_value|e}}
-                        <div class="indent">
-                            Buy: {{detail.trend_buy|e}}
-                        &nbsp;
-                            Neutral: {{detail.trend_neutral|e}}
-                        &nbsp;
-                            Sell: {{detail.trend_sell|e}}
-                        </div>
-                    </div>
-                {% endfor %}
-      {% endif %}
+	      {% else %}
+		  <img src="cid:{{loop.index0}}">
+	      {% endif %}
 
-  {% endfor %}
-
+	    {% endfor %}
+  </td>
+  </table>
 
   </body>
 </html>
