@@ -81,8 +81,9 @@ jobs:
 
             echo 'ok'
             cat prod_env_schedule.yml
+            cat docker_config_prod/logging.cfg
 
-            docker-compose -f prod_env_schedule.yml up
+            docker-compose -f prod_env_schedule.yml up -d
  
 workflows:
   version: 2
