@@ -7,9 +7,7 @@ executors:
       IMAGE_NAME: sarramagna/example_reporting_main
     docker:
       - image: 'circleci/buildpack-deps:stretch'
-  docker-report:
-    machine:
-      - image: ubuntu-1604:202010-01
+
 jobs:
   mybuild:
     executor: docker-publisher
@@ -64,21 +62,24 @@ jobs:
 
 
   send-report:
-    executor: docker-report
-    steps:
-      - checkout
+    build:
+      machine:
+        image: ubuntu-2004:202010-01
 
-      - run:
-          name: Install Docker Compose
-          command: |
-            curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-            chmod +x ~/docker-compose
-            sudo mv ~/docker-compose /usr/local/bin/docker-compose
-      - run: 
-          name: Run docker compose
-          command: |
-            docker-compose -f prod_env.yml up -d
-            docker-compose ps
+      steps:
+        - checkout
+
+        - run:
+            name: Install Docker Compose
+            command: |
+              curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+              chmod +x ~/docker-compose
+              sudo mv ~/docker-compose /usr/local/bin/docker-compose
+        - run: 
+            name: Run docker compose
+            command: |
+              docker-compose -f prod_env.yml up -d
+              docker-compose ps
  
 workflows:
   version: 2
