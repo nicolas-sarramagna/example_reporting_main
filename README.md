@@ -23,6 +23,8 @@ So, by default, the email is visible on the maildev webmail on http://localhost:
 
 ## Prod mode (example with smtp gmail) : 
 Complete and export the variables var_email_sender, var_email_receiver, var_secure_mode_login, var_secure_mode_pwd.
+Type in a terminal
+
 **export var_email_sender= ; export var_email_receiver= ; export var_secure_mode_login= ; export var_secure_mode_pwd= ;**
 
 and type
@@ -34,6 +36,6 @@ See the folder [docker_config_prod](https://github.com/nicolas-sarramagna/exampl
 ## Online mode : daily report with circleci
 CircleCI does not support the Docker volumes natively (see this [link](https://support.circleci.com/hc/en-us/articles/360007324514-How-can-I-use-Docker-volume-mounting-on-CircleCI-) for ex).
 
-Here,i use a workaround to call the the prod folder in the main function with an optional enviromnent variable.
+Here,i use a workaround to call the the prod folder in the main function (-> example_reporting_main/main.py + base_logger.py) with an optional enviromnent variable (declared in the file prod_env_circleci.yml).
 
-The circle ci config file [config.yml](https://github.com/nicolas-sarramagna/example_reporting_main/blob/main/.circleci/config.yml)  
+The circle ci config file [config.yml](https://github.com/nicolas-sarramagna/example_reporting_main/blob/main/.circleci/config.yml) contains the job named **send-report** and the workflow named **daily** with the definition of the trigger : at 9:00 AM every day.
