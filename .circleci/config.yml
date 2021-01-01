@@ -61,13 +61,10 @@ jobs:
 
 
   send-report:
-    docker:
-      - image: $IMAGE_NAME:latest
-        auth:
-          username: $DOCKERHUB_USERNAME
-          password: $DOCKERHUB_PASS
+    executor: docker-publisher
     steps:
       - checkout
+      - setup_remote_docker
       - run: >
             export var_email_sender=$VAR_EMAIL_SENDER
             export var_email_receiver=$VAR_EMAIL_RECEIVER
@@ -100,6 +97,7 @@ workflows:
       - mytest:
           requires:
             - mybuild
+      - send-report
   build-tags:
     jobs:
       - mybuild:
