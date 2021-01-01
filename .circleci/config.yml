@@ -74,7 +74,7 @@ jobs:
       - run: 
           name: Run docker compose
           command: |
-            docker-compose -f prod_env_schedule.yml up -d
+            docker-compose -f prod_env.yml up -d
             docker-compose ps
  
 workflows:
@@ -100,9 +100,7 @@ workflows:
       - mytest:
           requires:
             - mybuild
-      - send-report:
-          requires:
-            - mybuild
+ 
   build-tags:
     jobs:
       - mybuild:

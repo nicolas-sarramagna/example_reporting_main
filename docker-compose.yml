@@ -5,7 +5,6 @@ services:
     build: .
     volumes:
       - ./docker_config_dev/:/usr/src/app/example_reporting_main/config/
-    command: python example_reporting_main/main.py
     networks: 
       - mybackend
     depends_on:

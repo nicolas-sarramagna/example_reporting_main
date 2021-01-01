@@ -13,4 +13,8 @@ COPY . $WORKDIR
 RUN pip install --no-cache-dir -r requirements.txt  \
     && mkdir -p /usr/src/logs
 
+CMD [ "python", "example_reporting_main/main.py" ]
+
+
+
 
