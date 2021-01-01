@@ -5,6 +5,7 @@ services:
     image: sarramagna/example_reporting_main
     volumes:
       - ./docker_config_prod/:/usr/src/app/example_reporting_main/config/
+    command: python example_reporting_main/main.py
     environment:
       - email_sender=${VAR_EMAIL_SENDER}
       - email_receiver=${VAR_EMAIL_RECEIVER}
