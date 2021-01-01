@@ -9,7 +9,7 @@ executors:
       - image: 'circleci/buildpack-deps:stretch'
   docker-report:
     machine:
-      - image: 'ubuntu-1604:202010-01'
+      - image: ubuntu-1604:202010-01
 jobs:
   mybuild:
     executor: docker-publisher
