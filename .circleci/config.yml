@@ -7,6 +7,9 @@ executors:
       IMAGE_NAME: sarramagna/example_reporting_main
     docker:
       - image: 'circleci/buildpack-deps:stretch'
+  docker-report:
+   machine:
+      - image: 'ubuntu-1604:202010-01'
 jobs:
   mybuild:
     executor: docker-publisher
@@ -61,10 +64,10 @@ jobs:
 
 
   send-report:
-    executor: docker-publisher
+    executor: docker-report
     steps:
       - checkout
-      - setup_remote_docker
+
       - run:
           name: Install Docker Compose
           command: |
