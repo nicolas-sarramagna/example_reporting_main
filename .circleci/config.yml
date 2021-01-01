@@ -101,6 +101,7 @@ workflows:
       - mytest:
           requires:
             - mybuild
+
       - send-report:
           requires:
             - mybuild
