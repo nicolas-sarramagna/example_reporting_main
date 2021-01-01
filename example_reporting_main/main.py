@@ -13,7 +13,11 @@ from example_reporting_main.base_logger import logger
 if __name__ == '__main__':
     # 0 . Load config file
     config = configparser.ConfigParser()
-    config_file_path = path.join(path.dirname(path.abspath(__file__)), "config/config.cfg")
+
+    # for circleci which do not support volumes
+    config_folder = os.getenv("config_folder", "config")
+
+    config_file_path = path.join(path.dirname(path.abspath(__file__)), config_folder + "/config.cfg")
     config.read(config_file_path)
     logger.info("Read config file DONE")
 

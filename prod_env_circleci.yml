@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+  backend:
+    build: .
+
+    command: python example_reporting_main/main.py
+    environment:
+      - config_folder=../docker_config_prod
+      - email_sender=${VAR_EMAIL_SENDER}
+      - email_receiver=${VAR_EMAIL_RECEIVER}
+      - secure_mode_login=${VAR_SECURE_MODE_LOGIN}
+      - secure_mode_pwd=${VAR_SECURE_MODE_PWD}
+    networks: 
+      - mybackend
+    depends_on:
+      - server-web-services
+
+  server-web-services:
+    image: sarramagna/example_reporting_web_services
+    command: gunicorn example_reporting_web_services.app_ws:app --bind 0.0.0.0:50503 -w 2 -k uvicorn.workers.UvicornWorker
+    ports:
+      - "20503:50503"
+    networks: 
+      - mybackend
+
+networks:
+  mybackend:
+    driver: "bridge"
+
+

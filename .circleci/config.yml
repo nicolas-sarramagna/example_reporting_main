@@ -62,12 +62,10 @@ jobs:
 
 
   send-report:
-    machine:
-      image: ubuntu-2004:202010-01
-
+    executor: docker-publisher
     steps:
       - checkout
-
+      - setup_remote_docker
       - run:
           name: Install Docker Compose
           command: |
@@ -77,7 +75,7 @@ jobs:
       - run: 
           name: Run docker compose
           command: |
-            docker-compose -f prod_env.yml up -d
+            docker-compose -f prod_env_circleci.yml up -d
             docker-compose ps
  
 workflows:
@@ -103,9 +101,7 @@ workflows:
       - mytest:
           requires:
             - mybuild
-      - send-report:
-          requires:
-            - mybuild
+
   build-tags:
     jobs:
       - mybuild:
