@@ -79,9 +79,8 @@ jobs:
             export var_secure_mode_login=$VAR_SECURE_MODE_LOGIN
             export var_secure_mode_pwd=$VAR_SECURE_MODE_PWD
 
-            docker-compose -f prod_env_schedule.yml up -d
-            docker-compose down
-
+            docker-compose -f prod_env_schedule.yml up
+ 
 workflows:
   version: 2
   
