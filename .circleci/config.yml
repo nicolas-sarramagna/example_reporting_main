@@ -74,11 +74,6 @@ jobs:
       - run: 
           name: Run docker compose
           command: |
-            export var_email_sender=$VAR_EMAIL_SENDER
-            export var_email_receiver=$VAR_EMAIL_RECEIVER
-            export var_secure_mode_login=$VAR_SECURE_MODE_LOGIN
-            export var_secure_mode_pwd=$VAR_SECURE_MODE_PWD
-
             docker-compose -f prod_env_schedule.yml up -d
             docker-compose ps
  

@@ -6,10 +6,10 @@ services:
     volumes:
       - ./docker_config_prod/:/usr/src/app/example_reporting_main/config/
     environment:
-      - email_sender=${var_email_sender}
-      - email_receiver=${var_email_receiver}
-      - secure_mode_login=${var_secure_mode_login}
-      - secure_mode_pwd=${var_secure_mode_pwd}
+      - email_sender=${VAR_EMAIL_SENDER}
+      - email_receiver=${VAR_EMAIL_RECEIVER}
+      - secure_mode_login=${VAR_SECURE_MODE_LOGIN}
+      - secure_mode_pwd=${VAR_SECURE_MODE_PWD}
     command: python example_reporting_main/main.py
     networks: 
       - mybackend
