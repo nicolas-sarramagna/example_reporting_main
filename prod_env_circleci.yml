@@ -2,8 +2,8 @@ version: '2'
 
 services:
   backend:
-    build: .
-#    image: sarramagna/example_reporting_main
+#    build: .
+    image: sarramagna/example_reporting_main
 
     command: python example_reporting_main/main.py
     environment:
