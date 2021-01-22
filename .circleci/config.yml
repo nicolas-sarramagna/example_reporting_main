@@ -82,16 +82,17 @@ jobs:
 workflows:
   version: 2
   
-  daily:
-    triggers:
-      - schedule:
-          cron: "0 9 * * *"
-          filters:
-            branches:
-              only:
-                - main
-    jobs:
-      - send-report
+# 22/01/2021 desactivate trigger 
+#  daily:
+#    triggers:
+#      - schedule:
+#          cron: "0 9 * * *"
+#          filters:
+#            branches:
+#              only:
+#                - main
+#    jobs:
+#      - send-report
 
   build-master:
     jobs:
